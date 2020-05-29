@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://GFX/Background/bg_layer1.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/candles_.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://GFX/HUD/lifes.png" type="Texture" id=3]
+[ext_resource path="res://GameOver.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 2 )
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 125.0
+margin_top = 132.0
+margin_right = 898.0
+margin_bottom = 468.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 773.0
+margin_bottom = 164.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Game Over!"
+
+[node name="Try Again" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 168.0
+margin_right = 773.0
+margin_bottom = 250.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Try Again"]
+margin_left = 176.0
+margin_right = 540.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Try Again!"
+
+[node name="ResetButton" type="TextureButton" parent="CenterContainer/VBoxContainer/Try Again"]
+margin_left = 544.0
+margin_right = 596.0
+margin_bottom = 82.0
+texture_normal = ExtResource( 3 )
+
+[node name="Quit" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 254.0
+margin_right = 773.0
+margin_bottom = 336.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Quit"]
+margin_left = 263.0
+margin_right = 453.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Quit?"
+
+[node name="QuitButton" type="TextureButton" parent="CenterContainer/VBoxContainer/Quit"]
+margin_left = 457.0
+margin_right = 509.0
+margin_bottom = 82.0
+texture_normal = ExtResource( 3 )
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Try Again/ResetButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Try Again/ResetButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit/QuitButton" to="." method="_on_TextureButton_pressed"]

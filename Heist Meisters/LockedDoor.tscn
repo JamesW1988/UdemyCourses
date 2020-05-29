@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Door.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface/Numpad.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GFX/PNG/Tiles/tile_463.png" type="Texture" id=3]
+[ext_resource path="res://LockedDoor.gd" type="Script" id=4]
+[ext_resource path="res://Interface/Numpad.tres" type="Theme" id=5]
+
+[node name="LockedDoor" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+
+[node name="tile_473" parent="." index="1"]
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D" parent="tile_473" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="tile_473/StaticBody2D" index="0"]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
+
+[node name="Numpad" parent="CanvasLayer" index="0" instance=ExtResource( 2 )]
+
+[node name="Label" type="Label" parent="." index="5" groups=[
+"labels",
+]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 25.0
+margin_right = 80.0
+margin_bottom = 52.0
+rect_rotation = 180.0
+theme = ExtResource( 5 )
+text = "TEST"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="combination_correct" from="CanvasLayer/Numpad" to="." method="_on_Numpad_combination_correct"]
