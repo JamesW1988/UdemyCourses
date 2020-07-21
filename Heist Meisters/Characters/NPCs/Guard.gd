@@ -7,7 +7,7 @@ var motion
 var possible_destinations
 var path
 
-export var arrival_distance = 1
+export var arrival_distance = 5
 export var walk_speed = 0.5
 
 func _ready():
